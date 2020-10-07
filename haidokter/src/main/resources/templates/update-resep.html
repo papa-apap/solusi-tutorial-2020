@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+    <head>
+        <title>Update Resep</title>
+    </head>
+    <body>
+        <h1>Resep telah berhasil diupdate!</h1>
+        <h2>Informasi Resep</h2>
+        <h3 th:text="'Nomor Resep: '+ ${resep.noResep}"></h3>
+        <h3 th:text="'Nama Dokter: '+ ${resep.namaDokter}"></h3>
+        <h3 th:text="'Nama Pasien: '+ ${resep.namaPasien}"></h3>
+        <h3 th:text="'Catatan: '+ ${resep.catatan}"></h3>
+        <a href="/resep/viewall">Kembali</a>
+    </body>
+</html>
+
