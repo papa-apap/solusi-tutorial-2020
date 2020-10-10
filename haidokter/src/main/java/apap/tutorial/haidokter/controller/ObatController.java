@@ -23,10 +23,7 @@ public class ObatController {
     ObatService obatService;
 
     @GetMapping("/obat/add/{noResep}")
-    private String addResepFormPage(
-            @PathVariable Long noResep,
-            Model model
-    ) {
+    private String addResepFormPage(@PathVariable Long noResep, Model model) {
         ObatModel obat = new ObatModel();
         ResepModel resep = resepService.getResepByNomorResep(noResep).get();
         obat.setResepModel(resep);
@@ -36,10 +33,7 @@ public class ObatController {
     }
 
     @PostMapping("/obat/add")
-    private String addObatSubmit(
-            @ModelAttribute ObatModel obat,
-            Model model
-    ) {
+    private String addObatSubmit(@ModelAttribute ObatModel obat, Model model) {
         obatService.addObat(obat);
         model.addAttribute("nama", obat.getNama());
 
@@ -47,10 +41,7 @@ public class ObatController {
     }
 
     @GetMapping("/obat/change/{idObat}")
-    private String changeObatFormPage(
-            @PathVariable Long idObat,
-            Model model
-    ) {
+    private String changeObatFormPage(@PathVariable Long idObat, Model model) {
         ObatModel existingObat = obatService.getObatById(idObat);
         model.addAttribute("obat", existingObat);
 
@@ -58,25 +49,20 @@ public class ObatController {
     }
 
     @PostMapping("/obat/change")
-    private String changeObatFormSubmit(
-            @ModelAttribute ObatModel obat,
-            Model model
-    ) {
+    private String changeObatFormSubmit(@ModelAttribute ObatModel obat, Model model) {
         ObatModel newObatData = obatService.changeObat(obat);
         model.addAttribute("obat", newObatData.getNama());
 
         return "update-obat";
     }
 
-    @GetMapping("/obat/delete/{idObat}")
-    private String deleteObat(
-            @PathVariable Long idObat,
-            Model model
-    ) {
-        ObatModel obat = obatService.getObatById(idObat);
-        model.addAttribute("obat", obat.getNama());
-        obatService.deleteObatById(idObat);
-
+    @PostMapping(value = "/obat/delete")
+    public String deleteMenuFormSubmit(@ModelAttribute ResepModel resep, Model model) {
+        model.addAttribute("obatCount", resep.getListObat().size());
+        for (ObatModel obat : resep.getListObat()) {
+            obatService.deleteObatById(obat.getId());
+        }
         return "delete-obat";
     }
+
 }
