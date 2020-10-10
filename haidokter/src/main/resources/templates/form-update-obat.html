@@ -1,28 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Change Data Obat</title>
-</head>
-<body>
-<h2>Change Data Obat</h2>
-<form th:action="@{/obat/change}" th:object="${obat}" method="POST">
-    <input type="hidden" th:field="*{resepModel}"/>
-    <input type="hidden" th:field="*{id}"/>
-    Nama Obat:<br>
-    <input type="text" name="nama" th:value="*{nama}"/>
-    <br>
-    Bentuk:<br>
-    <select name="bentuk">
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+  </head>
+
+  <body>
+    <nav th:replace="fragments/fragment :: navbar (current='Update Obat')"></nav>
+    <h2>Change Data Obat</h2>
+    <form th:action="@{/obat/change}" th:object="${obat}" method="POST">
+      <input type="hidden" th:field="*{resepModel}" />
+      <input type="hidden" th:field="*{id}" />
+      Nama Obat:<br />
+      <input type="text" name="nama" th:value="*{nama}" />
+      <br />
+      Bentuk:<br />
+      <select name="bentuk">
         <option value="0" th:selected="*{bentuk == 0}">Kapsul</option>
         <option value="1" th:selected="*{bentuk == 1}">Tablet</option>
         <option value="2" th:selected="*{bentuk == 2}">Sirup</option>
-    </select>
-    <br>
-    Kuantitas:<br>
-    <input type="number" name="kuantitas" th:value="*{kuantitas}"/>
-    <br><br><br>
-    <button type="submit" value="Submit">Submit</button>
-</form>
-</body>
+      </select>
+      <br />
+      Kuantitas:<br />
+      <input type="number" name="kuantitas" th:value="*{kuantitas}" />
+      <br /><br /><br />
+      <button type="submit" value="Submit">Submit</button>
+    </form>
+  </body>
 </html>
