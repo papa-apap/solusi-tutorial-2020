@@ -82,7 +82,7 @@ public class ObatController {
         return "form-add-multiple-obat";
     }
 
-    @PostMapping(value = "/obat/add-multiple/{idRestoran}", params = { "addRow" })
+    @PostMapping(value = "/obat/add-multiple/{noResep}", params = { "addRow" })
     public String addRow(@ModelAttribute ResepModel resep, BindingResult bindingResult, Model model) {
         if (resep.getListObat() == null) {
             resep.setListObat(new ArrayList<ObatModel>());
@@ -93,7 +93,7 @@ public class ObatController {
         return "form-add-multiple-obat";
     }
 
-    @PostMapping(value = "/obat/add-multiple/{idRestoran}", params = { "removeRow" })
+    @PostMapping(value = "/obat/add-multiple/{noResep}", params = { "removeRow" })
     public String removeRow(@ModelAttribute ResepModel resep, final BindingResult bindingResult,
             final HttpServletRequest req, Model model) {
         final int rowIndex = Integer.valueOf(req.getParameter("removeRow"));
@@ -102,7 +102,7 @@ public class ObatController {
         return "form-add-multiple-obat";
     }
 
-    @PostMapping(value = "/obat/add-multiple/{idRestoran}", params = { "save" })
+    @PostMapping(value = "/obat/add-multiple/{noResep}", params = { "save" })
     private String addObatSubmitForm(@ModelAttribute ResepModel resep, Model model) {
         ResepModel currentResep = resepService.getResepByNomorResep(resep.getNoResep()).get();
         model.addAttribute("obatCount", resep.getListObat().size());
