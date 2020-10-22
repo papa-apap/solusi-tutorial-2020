@@ -38,7 +38,8 @@ public class HotelController {
             Model model){
         hotelService.addHotel(hotel);
         model.addAttribute("idHotel", hotel.getId());
-        return "add-hotel";
+        return "home";
+//        return "add-hotel";
     }
 
     @GetMapping("/hotel/change/{idHotel}")

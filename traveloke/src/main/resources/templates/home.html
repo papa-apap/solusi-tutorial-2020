@@ -34,6 +34,9 @@
                 </div>
             </div>
         </div>
+        <div th:if="${idHotel}">
+            <p style="color:green;" th:text="'Hotel dengan id Hotel ' + ${idHotel} + ' berhasil ditambahkan.'"></p>
+        </div>
     </div>
 </body>
 </html>

@@ -7,14 +7,37 @@
 </head>
 <body>
 <nav th:replace="fragments/fragment :: navbar (current='View All Hotel')"></nav>
-    <h2>Daftar Seluruh Hotel</h2>
-    <div th:each="hotel: ${listHotel}">
-        <h3 th:text="'Id Hotel: '+ ${hotel.id}"></h3>
-        <h3 th:text="'Nama Hotel: '+ ${hotel.namaHotel}"></h3>
-        <h3 th:text="'Alamat Hotel: '+ ${hotel.alamat}"></h3>
-        <h3 th:text="'Nomor Telepon: '+ ${hotel.nomorTelepon}"></h3>
-        <hr>
-    </div>
+<h2>Daftar Seluruh Hotel:</h2>
+<div th:if="${listHotel.size() > 0}">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>No</th>
+            <th>ID Hotel</th>
+            <th>Nama Hotel</th>
+            <th>Alamat</th>
+            <th>No Telepon</th>
+            <th>Aksi</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="hotel, iterationStatus : ${listHotel}">
+            <td th:text="${iterationStatus.count}"></td>
+            <td th:text="${hotel.id}"></td>
+            <td th:text="${hotel.namaHotel}"></td>
+            <td th:text="${hotel.alamat}"></td>
+            <td th:text="${hotel.nomorTelepon}"></td>
+            <td>
+                <a class="btn btn-info" th:href="@{/hotel/view?idHotel=}+${hotel.id}">Lihat</a>
+                <a class="btn btn-warning" th:href="@{/hotel/change/}+${hotel.id}">Ubah</a>
+                <a class="btn btn-danger" th:href="@{/hotel/delete/}+${hotel.id}">Hapus</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div th:if="${listHotel.size() == 0}">
+    <h2 th:text="'Tidak ada daftar hotel'"></h2>
+</div>
 </body>
 </html>
-
