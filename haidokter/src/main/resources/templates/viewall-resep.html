@@ -10,13 +10,49 @@
     <nav
       th:replace="fragments/fragment :: navbar (current='View All Resep')"
     ></nav>
-    <h2>Daftar Seluruh Resep</h2>
-    <div th:each="resep: ${listResep}">
-      <h3 th:text="'Nomor Resep: '+ ${resep.noResep}"></h3>
-      <h3 th:text="'Nama Dokter: '+ ${resep.namaDokter}"></h3>
-      <h3 th:text="'Nama Pasien: '+ ${resep.namaPasien}"></h3>
-      <h3 th:text="'Catatan: '+ ${resep.catatan}"></h3>
-      <hr />
+    <div class="container-fluid">
+      <h2>Daftar Seluruh Resep</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Nomor Resep</th>
+            <th>Nama Dokter</th>
+            <th>Nama Pasien</th>
+            <th>Catatan</th>
+            <th class="text-center">Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            th:each="resep, iterationStatus: ${listResep}"
+            th:style="${iterationStatus.even}?'font-weight:bold;'"
+          >
+            <td th:text="${iterationStatus.count}"></td>
+            <td th:text="${resep.noResep}"></td>
+            <td th:text="${resep.namaDokter}"></td>
+            <td th:text="${resep.namaPasien}"></td>
+            <td th:text="${resep.catatan}"></td>
+            <td class="text-center">
+              <a
+                th:href="@{/resep/view(noResep=${resep.noResep})}"
+                class="btn btn-success"
+                >Lihat Resep</a
+              >
+              <a
+                th:href="@{/resep/change/} + ${resep.noResep}"
+                class="btn btn-outline-success"
+                >Ubah Resep</a
+              >
+              <a
+                th:href="@{/resep/delete/} + ${resep.noResep}"
+                class="btn btn-danger"
+                >Hapus Resep</a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </body>
 </html>
