@@ -42,8 +42,8 @@ public class KamarController {
 
     @RequestMapping(value = "/kamar/add/{idHotel}")
     private String add(@PathVariable(value = "idHotel") Long idHotel, Model model) {
-        model.addAttribute("titleTab", "Add Kamaar");
-        HotelModel hotel = hotelService.getHotelByIdHotel(idHotel);
+        model.addAttribute("titleTab", "Add Kamar");
+        HotelModel hotel = new HotelModel();
         hotel.setListKamar(new ArrayList<KamarModel>());
         hotel.getListKamar().add(new KamarModel());
         model.addAttribute("hotel", hotel);
