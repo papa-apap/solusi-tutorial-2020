@@ -6,24 +6,30 @@ Solusi setiap tutorial akan dibedakan berdasarkan branch.
 ---
 
 ## Jawaban Pertanyaan Tutorial 
-1. Jelaskan perbedaan th:include dan th:replace!
+1. Apa itu Postman? Apa kegunaannya?
 
-   Jika kita menggunakan `th:include`, maka kontent fragment akan berada didalam tag pemanggil `th:include` tersebut. Contoh : `<div class="cth" th:include="..."> content </div>`. Maka, isi dari fragment yang dipanggil berada di dalam div (class cth). Sedangkan, jika kita menggunakan `th:replace`, fragment yang dipanggil bukan berada di dalam tag yang memanggil. Melainkan, tag pemanggil akan di replace dengan fragmentnya
-
-2. Jelaskan apa fungsi dari th:object!
-   
-   `th: objek` digunakan untuk menentukan objek yang akan diikat oleh data form untuk nantinya atribut-atribut dari objek tersebut digunakan pada field form di html.
-   
-3. Jelaskan perbedaan dari * dan $ pada saat penggunaan th:object! Kapan harus dipakai?
-
-   Ketika menggunakan th:object, form akan dihubungkan dengan sebuah model yang kita kirimkan. Dalam contoh soal adalah ${resep}. Tanda $ berguna untuk mengambil objek model yang kita passing dari controller untuk dihubungkan ke form. Sedangkan tanda * berguna untuk menunjuk atribut dari object yang digunakan pada form dalam kasus ini *{listObat} mengambil daftar obat dari resep saat ini.
-
-4. Bagaimana kamu menyelesaikan latihan nomor 3?
-
-   Terdapat beberapa cara untuk menyelesaikan latihan ini. Cara yang akan digunakan kali ini adalah dengan melakukan passing variable dari HTML ke fragment.
-
-   - Pertama pada fragment tambahkan penggunaan variabel yang ingin digunakan, dalam contoh ini variable bernama 'current'.
-      `<a href="#" th:text="${current}"></a>`
-
-   - Kemudian pada file HTML yang menggunakan fragment navbar, kita dapat menambahkan argumen seperti berikut ini ke fragment. Contoh pada home.html.
-   `<nav th:replace="fragments/fragment :: navbar (current='Home')"></nav>`
+    Postman adalah aplikasi yang digunakan untuk berinteraksi dengan API menggunakan HTTP request.
+    Dengan Postman, kita dapat memastikan fungsionalitas suatu API dengan mudah,
+    tanpa harus menulis kodingan yang panjang. Selain itu, Postman juga dapat digunakan untuk
+    melakukan automated testing, mensimulasikan endpoint API, melakukan monitoring terhadap kinerja
+    API, dan menulis dokumentasi API.
+2. Jelaskan fungsi dari anotasi @JsonIgnoreProperties dan @JsonProperty.
+    - `@JsonIgnoreProperties` digunakan untuk mengabaikan suatu atribut dalam serialisasi dan deserialisasi
+    JSON. `JsonIgnoreProperties` diletakkan pada class level, bukan pada properti yang ada dalam class
+    tersebut.
+    - `@JsonProperty` digunakan untuk memetakan nama properti yang diberikan pada JSON terhadap properti
+    di class Java yang bersangkutan. Misalnya, suatu atribut `name` memiliki `@JsonProperty` berupa `className`,
+    maka saat dikirim JSON dengan parameter `className`, parameter tersebut akan menjadi atribut `name` pada
+    class yang bersangkutan.
+3. Apa kegunaan atribut WebClient?
+    WebClient adalah interface yang dapat digunakan untuk melakukan HTTP request terhadap Rest Service di luar
+    aplikasi. WebClient bisa digunakan untuk membuat API Consumer atau Producer, sehingga aplikasi lain
+    juga dapat berinteraksi dengan API yang ada pada aplikasi kita.
+4. Apa itu ResponseEntity dan BindingResult? Apa kegunaannya?
+    - `ResponseEntity` merepresentasikan HTTP response dengan isi berupa status, code, header, dan body.
+    Dengan `ResponseEntity`, kita dapat mengatur response apa yang kita harapkan saat melakukan suatu
+    HTTP request.
+    - `BindingResult` adalah sebuah objek dari Spring yang menyimpan hasil dari validasi dan juga error
+    yang terjadi saat dilakukannya validasi tersebut. `BindingResult` biasanya dipanggil dalam suatu
+    method di Controller setelah pemanggilan objek Model yang diperlukan validasi. Biasanya BindingResult
+    digunakan untuk memastikan form yang sudah disubmit memiliki isi yang sudah sesuai. 
